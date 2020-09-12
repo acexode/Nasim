@@ -1,5 +1,7 @@
 import React from 'react'
 import logo from '../../assets/Group.svg'
+import './nav.scss';
+
 const Nav = () => {
     return (
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 navbar-scrolled" id="mainNav">

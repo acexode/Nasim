@@ -13,7 +13,7 @@ export const Home = () => {
                     </div>
                     <div class="col-lg-8 align-self-baseline">
                         <p class="text-white-75 font-weight-light mb-5 registration-for-n-p">Registration for N-POWER Batch C Scheme is now ongoing. Get lifelong skills to become a solutions provide in your community</p>
-                        <a class="btn btn-primary apply-btn" href="apply">
+                        <a class="btn btn--outlined apply-btn" href="apply">
                             <span class="apply-now">Apply now</span>
                         </a>
                     </div>
