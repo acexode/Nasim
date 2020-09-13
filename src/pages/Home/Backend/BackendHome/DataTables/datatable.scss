@@ -1,0 +1,67 @@
+.table-bordered thead td, .table-bordered thead th {
+    border-bottom: none;
+    color: #444444;
+}
+.cellActive {
+    height: 28px;
+    width: 90px;
+    border-radius: 14px;
+    background-color: #CCF1DB;   
+    color: #01C04F;
+    padding-top: 3px;
+    font-family: Poppins;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 23px;
+    text-align: center;
+  }
+.cellPending {
+    height: 28px;
+    width: 90px;
+    border-radius: 14px;
+    color: #856404;
+    background-color: #fff3cd;
+    padding-top: 3px;
+    font-family: Poppins;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 23px;
+    text-align: center;
+  }
+  .table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+.mask {
+    box-sizing: border-box;
+    height: 51px;
+    width: 51px;
+    margin-right: 2em;
+    border: 1px solid #FAFAFA;
+    background-color: #FFFFFF;
+  }
+  .search-scheme{
+    box-sizing: border-box;
+    height: 51px;
+    width: 381px;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+  }
+  .click-to-view-benefi {
+    height: 26px;
+    width: 206px;
+    color: #288855;
+    font-family: Poppins;
+    font-size: 16px;
+    letter-spacing: 0;
+    text-decoration: underline;
+    line-height: 26px;
+  }
+  .click-to-view-benefi:hover{   
+    color: black; 
+    text-decoration: none;   
+    cursor: pointer;
+  }
