@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import logo from './logo.svg';
 import './App.scss';
 import Home from './pages/Home/Home';
 import { withRouter, Switch, BrowserRouter, Route, useHistory, Redirect} from 'react-router-dom';
