@@ -5,7 +5,7 @@ const Scheme = () => {
     return (
         <div>
         
-					<SchemeTable />
+			<SchemeTable />
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import BackendNav from '../../../../components/Nav/BackendNav'
 import Tab from '../../../../components/Nav/Tabs'
+import InterventionReportTable from './DataTables/InterventionReportTable'
 import Scheme from './Scheme'
 
 
@@ -17,7 +18,9 @@ const BackendHome = () => {
             <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                 <Scheme />
             </div>
-            <div className="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">3...</div>
+            <div className="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                <InterventionReportTable />
+            </div>
 </div>
         </div>
     )

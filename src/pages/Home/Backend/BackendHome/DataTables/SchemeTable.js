@@ -8,20 +8,38 @@ import tradermoni from '../../../../../assets/trader-moni.png'
 import axios from "axios";
 import './datatable.scss'
 import data from './scheme.json'
+import { Link } from "react-router-dom";
 const { SearchBar, ClearSearchButton } = Search;
-function priceFormatter(cell, row) {
+function statusFormatter(cell, row) {
   console.log(row)
+  console.log(cell)
   if (row.Status) {
     return (
-      <p className='cellActive'>
-        <strong>Active</strong>
-      </p>
+      <div className=' d-flex'>
+        <strong className="cellActive mr-3"> Active</strong>
+        
+        <div class="dropdown dropdown-action">
+						<a href="#" class="action-icon text-secondary" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></a>
+								<div class="dropdown-menu dropdown-menu-right">
+                
+									<a class="dropdown-item text-success" href="#" data-toggle="modal" data-target="#edit_leave">Active <i class="fa fa-check text-success" aria-hidden="true"></i> </a>
+									<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_approve">Pending</a>
+								</div>
+				</div>
+      </div>
     );
   }
   return (
-      <p className='cellPending'>
-        <strong>Pending</strong>
-      </p>
+    <div className=' d-flex'>
+    <strong className="cellPending mr-3">Pending</strong>
+    <div class="dropdown dropdown-action">
+        <a href="#" class="action-icon text-secondary" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_leave"> Active</a>
+              <a class="dropdown-item text-warning" href="#" data-toggle="modal" data-target="#delete_approve">Pending <i class="fa fa-check text-warning" aria-hidden="true"></i></a>
+            </div>
+    </div>
+  </div>
     
   );
 }
@@ -49,47 +67,40 @@ function nameFormatter(cell, row) {
 }
 function beneficiariesFormatter(cell, row) {  
     return (
-      <a className="click-to-view-benefi">Click to see beneficiaries</a>
+      <Link to="/beneficiaries" className="click-to-view-benefi">Click to see beneficiaries</Link>
     );
 }
+
 export class SchemeTable extends Component {
   state = {
-    employee: [],
-
+    allSchemes: [],
+    active: false,
     columns: [     
 
       {
         dataField: "Name",
-
         text: "Scheme Name",
         formatter: nameFormatter,
         sort: true,
       },
       {
         dataField: "Code",
-
         text: "Code",
-
         sort: true,
       },
       {
         dataField: "Date",
-
         text: "Date Created",
-
         sort: true,
       },
       {
         dataField: "Sponsor",
-
         text: "Sponsor",
-
         sort: true,
       },
 
       {
         dataField: "Beneficiaries",
-
         text: "Beneficiaries",
         formatter: beneficiariesFormatter,
         sort: true,
@@ -98,12 +109,20 @@ export class SchemeTable extends Component {
       {
         dataField: "Status",
         text: "Status",
-        formatter: priceFormatter,
+        formatter: statusFormatter,
         sort: true,
       },
     ],
   };
-  
+  filterStatus(val){    
+    const currentState = this.state.active;
+    this.setState({ active: !currentState });
+    let filter = data.filter(e => e.Status == val)
+    console.log(filter)
+    this.setState({
+      allSchemes: filter,
+    });
+  }
   componentDidMount() {
 	console.log(data)
     // axios.get("./mock.json").then((response) => {
@@ -111,7 +130,7 @@ export class SchemeTable extends Component {
     //   console.log(response.data);
 
       this.setState({
-        employee: data,
+        allSchemes: data,
       });
     // });
   }
@@ -133,7 +152,7 @@ export class SchemeTable extends Component {
         >
 			  <ToolkitProvider
   keyField="id"
-  data={this.state.employee}
+  data={this.state.allSchemes}
   columns={this.state.columns}
   search
 >
@@ -151,13 +170,23 @@ export class SchemeTable extends Component {
 								
 							</div>
 							<div class="col-auto float-right ml-auto mb-2">
-								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Add Scheme</a>
+								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_allSchemes"><i class="fa fa-plus"></i> Add Scheme</a>
 								
 							</div>
 						</div>
 					</div>
+						<div class="row">
+							<div class="col-2 my-2">
+								<a  ><h3 onClick={()=> this.filterStatus(true)} class="active-schemes" >ACTIVE SCHEMES</h3>	</a>							
+							</div>
+							<div class="col-2 my-2">
+								<a ><h3 onClick={()=> this.filterStatus(false)}  class="pending-schemes">PENDING SCHEMES</h3>	</a>							
+							</div>
+						</div>
+            
         
         <BootstrapTable
+          bordered={ false }
           { ...props.baseProps }
         />
         
