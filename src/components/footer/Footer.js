@@ -16,13 +16,13 @@ const Footer = () => {
           </div>
           <div className="my-2 text-center col-12 col-md-2">
             <a href="#">
-              <i classname="fa fa-facebook" aria-hidden="true"></i>
+              <i className="fa fa-facebook" aria-hidden="true"></i>
             </a>
             <a href="#">
-              <i classname="fa fa-twitter" aria-hidden="true"></i>
+              <i className="fa fa-twitter" aria-hidden="true"></i>
             </a>
             <a href="#">
-              <i classname="fa fa-instagram" aria-hidden="true"></i>
+              <i className="fa fa-instagram" aria-hidden="true"></i>
             </a>
           </div>
         </div>
