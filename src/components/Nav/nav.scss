@@ -17,7 +17,22 @@
   padding: 0.75rem 0;
 }
 
+.nav-brand-group{
+  height: 53px;
+  
+}
+
+.user-img{
+  width: 40px;
+  height: 40px;
+}
+.user-img img {
+  border-radius: 50%; 
+  width: 40px;
+  margin-right: 5px;
+}
 @media (min-width: 992px) {
+  
   #mainNav {
     box-shadow: none;
     background-color: transparent;
@@ -39,7 +54,7 @@
     padding-right: 0;
   }
   #mainNav.navbar-scrolled {
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 4px 0 rgba(171,171,171,0.5);
     background-color: #fff;
   }
   #mainNav.navbar-scrolled .navbar-brand {
@@ -54,13 +69,19 @@
       letter-spacing: 0;
       line-height: 26px;
   }
-
 }
+    .navbrand-title{
+      color: #444444 !important;
+      font-family: Poppins;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0;
+      line-height: 32px;
+    }
 
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 4.5rem);
-  background: rgba(16,16,16,0.67) url("../../assets/woman-sitting-on-bench-3307279.svg");
   background-position: 50% 50%;
   background-repeat: no-repeat;
 
