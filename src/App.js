@@ -2,6 +2,9 @@ import React, {useEffect} from 'react';
 import logo from './logo.svg';
 import './App.scss';
 import Home from './pages/Home/Home';
+import Login from './pages/Login/Login';
+import Nav from './components/Nav/Nav';
+import Footer from './components/Footer/Footer';
 import { withRouter, Switch, BrowserRouter, Route, useHistory, Redirect} from 'react-router-dom';
 
 const Main = withRouter(({ location }) => {
@@ -10,7 +13,8 @@ const Main = withRouter(({ location }) => {
     <>  
      
     <Switch>       
-        <Route path="/" exact component={Home} />    
+        <Route path="/" exact component={Home} /> 
+        <Route path="/login" exact component={Login} /> 
         
        
      
@@ -24,9 +28,13 @@ const Main = withRouter(({ location }) => {
 })
 function App() {
   return (
-    <BrowserRouter >
-    <Main />
-  </BrowserRouter>
+    <div>
+      <Nav />
+      <BrowserRouter >
+        <Main />
+      </BrowserRouter>
+      <Footer />
+    </div>
   );
 }
 

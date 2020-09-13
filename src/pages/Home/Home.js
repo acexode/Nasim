@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Nav from '../../components/Nav/Nav'
-import Footer from '../../components/footer/Footer'
+import Footer from '../../components/Footer/Footer'
 import HeroItem from './HeroItem'
 import aboutImage from '../../assets/about-img.png'
 import './home.scss'
@@ -53,7 +53,6 @@ export const Home = () => {
 
     return (
         <div>
-            <Nav/>
             <main className="main">
                 <section className="position-relative">
                     {heroData.map((item, index) => {
@@ -274,7 +273,6 @@ export const Home = () => {
                         </div>
                     </div>
                 </section>
-                <Footer />
             </main>
         </div>
     )
