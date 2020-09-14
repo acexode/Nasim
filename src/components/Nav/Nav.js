@@ -13,7 +13,7 @@ const Nav = () => {
                 <div className="collapse navbar-collapse bg-white pl-3 mx-n3" id="navbarResponsive">
                     <ul className="navbar-nav ml-auto my-2 my-lg-0 align-items-center">
                         <li className="nav-item">
-                            <a className="nav-link js-scroll-trigger" href="#home">Home</a>
+                            <a className="nav-link js-scroll-trigger" href="/">Home</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link js-scroll-trigger" href="#apply">Apply</a>
