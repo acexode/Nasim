@@ -11,6 +11,8 @@ import BeneficiariesTable from './pages/Home/Backend/BackendHome/DataTables/Bene
 import BeneficiaryLists from './pages/Home/Backend/Supervisor/BeneficiaryLists';
 import Footer from './components/Footer/Footer';
 
+import Overview from "./pages/Home/Backend/Supervisor/Overview"
+
 const Main = withRouter(({ location }) => {
   
   return (
@@ -28,6 +30,7 @@ const Main = withRouter(({ location }) => {
         <Route path="/beneficiary-lists" exact component={BeneficiaryLists} />    
         <Route path="/login" exact component={Login} /> 
         <Route path="/adminlogin" exact component={AdminLogin} /> 
+        <Route path="/overview" exact component={Overview} /> 
         
        
      
