@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.scss';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
+import AdminLogin from "./pages/AdminLogin/AdminLogin"
 import Nav from './components/Nav/Nav';
 import Footer from "./components/Footer/Footer"
 import { withRouter, Switch, BrowserRouter, Route, useHistory, Redirect} from 'react-router-dom';
@@ -14,13 +15,18 @@ const Main = withRouter(({ location }) => {
   
   return (
     <>  
-     
+      {location.pathname != "/adminlogin" && (
+        <>
+          <Nav />
+          <Footer />
+        </>
+      )}
     <Switch>       
         <Route path="/" exact component={Home} />    
         <Route path="/dashboard" exact component={BackendHome} />    
         <Route path="/beneficiaries" exact component={BeneficiariesTable} />    
-        <Route path="/" exact component={Home} /> 
         <Route path="/login" exact component={Login} /> 
+        <Route path="/adminlogin" exact component={AdminLogin} /> 
         
        
      
@@ -35,11 +41,11 @@ const Main = withRouter(({ location }) => {
 function App() {
   return (
     <div>
-      <Nav />
+     
       <BrowserRouter >
         <Main />
       </BrowserRouter>
-      <Footer />
+     
     </div>
   );
 }
