@@ -4,6 +4,7 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import AdminLogin from "./pages/AdminLogin/AdminLogin";
 import Nav from "./components/Nav/Nav";
+import AuthGuard from "./components/Helper/AuthGuard"
 
 import { withRouter, Switch, BrowserRouter, Route } from "react-router-dom";
 import BackendHome from "./pages/Home/Backend/BackendHome/BackendHome";
@@ -26,18 +27,18 @@ const Main = withRouter(({ location }) => {
       )}
       <Switch>
         <Route path="/" exact component={Home} />
+          <Route path="/adminlogin" exact component={AdminLogin} />
+          <Route path="/login" exact component={Login} />
         <SchemeProvider>
-          <Route path="/dashboard" exact component={BackendHome} />
-          <Route
+          <AuthGuard path="/dashboard" exact component={BackendHome} />
+          <AuthGuard
             path="/beneficiaries/:id"
             exact
             component={BeneficiariesTable}
           />
         </SchemeProvider>
-        <Route path="/beneficiary-lists" exact component={BeneficiaryLists} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/adminlogin" exact component={AdminLogin} />
-        <Route path="/overview" exact component={Overview} />
+        <AuthGuard path="/beneficiary-lists" exact component={BeneficiaryLists} />
+        <AuthGuard path="/overview" exact component={Overview} />
       </Switch>
     </>
   );
