@@ -14,7 +14,7 @@ import data from "./reports.json";
 const { SearchBar, ClearSearchButton } = Search;
 function statusFormatter(cell, row) {
   console.log(row);
-  if (row.Status) {
+  if (row.status) {
     return (
       <div className=" d-flex">
         <strong className="cellActive mr-3">Active</strong>
@@ -56,6 +56,8 @@ function statusFormatter(cell, row) {
         </div>
       </div>
     );
+  } else if (!row.status) {
+    return <div>---</div>;
   }
   return (
     <div className=" d-flex">
@@ -127,41 +129,50 @@ function nameFormatter(cell, row) {
     </div>
   );
 }
+function dateFormatter(cell, row) {
+  if (!row.date_created) {
+    return <div>---</div>;
+  }
+}
 
 export class InterventionReportTable extends Component {
   state = {
     allSchemes: [],
-
+    active: [],
+    pending: [],
+    disbursed: [],
+    // current
     columns: [
       {
-        dataField: "Name",
+        dataField: "programme_name",
+        text: "Programme Name",
+        sort: true,
+      },
+      {
+        dataField: "scheme_name",
         text: "Scheme Name",
         sort: true,
       },
       {
-        dataField: "Scheme_name",
-        text: "Scheme Name",
-        sort: true,
-      },
-      {
-        dataField: "Date",
+        dataField: "date_created",
         text: "Date Created",
+        formatter: dateFormatter,
         sort: true,
       },
       {
-        dataField: "Num_applicants",
+        dataField: "no_of_applicants",
         text: "No. of Applicants",
         sort: true,
       },
 
       {
-        dataField: "Num_approved",
+        dataField: "no_of_approved",
         text: "Number of Approved",
         sort: true,
       },
 
       {
-        dataField: "Status",
+        dataField: "status",
         text: "Status",
         formatter: statusFormatter,
         sort: true,
@@ -181,8 +192,15 @@ export class InterventionReportTable extends Component {
       .then((response) => {
         console.log(response);
         console.log(response.data);
+        const data = response.data;
+        let active = data.filter((el) => el.status === "active");
+        let pending = data.filter((el) => el.status === "pending");
+        let disbursed = data.filter((el) => el.status === "disbursed");
         this.setState({
-          allSchemes: response.data,
+          allSchemes: data,
+          active,
+          pending,
+          disbursed,
         });
       });
   }
@@ -212,7 +230,7 @@ export class InterventionReportTable extends Component {
                 <div class="page-header">
                   <div class="row align-items-center">
                     <div class="col-12 my-2">
-                      <h3 class="scheme-report">Scheme Report</h3>
+                      <h3 class="scheme-report1">Scheme Intervention Report</h3>
                     </div>
                     <div class="col ">
                       <SearchBar
