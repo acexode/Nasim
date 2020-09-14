@@ -74,7 +74,7 @@ function beneficiariesFormatter(cell, row) {
 export class SchemeTable extends Component {
   state = {
     allSchemes: [],
-    active: false,
+    active: [false, false],
     columns: [     
 
       {
@@ -175,7 +175,7 @@ export class SchemeTable extends Component {
 							</div>
 						</div>
 					</div>
-						<div class="row">
+						<div class="row">           
 							<div class="col-2 my-2">
 								<a  ><h3 onClick={()=> this.filterStatus(true)} class="active-schemes" >ACTIVE SCHEMES</h3>	</a>							
 							</div>

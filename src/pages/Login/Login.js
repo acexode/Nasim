@@ -21,14 +21,14 @@ const Login = () => {
               <div className="form-group my-4">
                 <input type="email" className="form-control form-control-lg" id="email" placeholder="Enter Email Address" />
               </div>
-              <div className="form-group my-4">
+              {/* <div className="form-group my-4">
                 <select id="inputState" className="form-control form-control-lg">
                   <option value="" selected disabled>Select User Role</option>
                   <option>Beneficiary</option>
                   <option>Admin</option>
                   <option>User</option>
                 </select>
-              </div>
+              </div> */}
               <div className="form-group my-4">
                 <input type="password" className="form-control form-control-lg" id="password" placeholder="Enter Password" />
               </div>
