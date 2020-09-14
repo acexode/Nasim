@@ -95,13 +95,14 @@ export class BeneficiariesTable extends Component {
 		order: 'desc'
 	  }];
     return (
-      <div className="container">
+      <div>
         
 
         <div
           style={{
             marginTop: 20,
           }}
+          className="container"
         >
 			  <ToolkitProvider
   keyField="id"
