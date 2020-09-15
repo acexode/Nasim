@@ -16,7 +16,7 @@ import {
 import BackendHome from "./pages/Home/Backend/BackendHome/BackendHome";
 import BeneficiariesTable from "./pages/Home/Backend/BackendHome/DataTables/Beneficiaries";
 import BeneficiaryLists from "./pages/Home/Backend/Supervisor/BeneficiaryLists";
-import Footer from "./components/Footer/Footer";
+import Footer from "./components/footer/Footer";
 
 import Overview from "./pages/Home/Backend/Supervisor/Overview";
 
