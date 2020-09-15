@@ -16,15 +16,15 @@ const BackendNav = () => {
       id="mainNav"
     >
       <div className="container">
-        <a className="navbar-brand js-scroll-trigger" href="#page-top">
+        <Link className="navbar-brand js-scroll-trigger" to="/">
           <img src={logo} alt="" />
-        </a>
-        <a
+        </Link>
+        <Link
           className="navbar-brand navbrand-title d-none d-md-block"
-          href="#page-top"
+          to="/"
         >
           NATIONAL SOCIAL INVESTMENT MANAGEMENT SYSTEM
-        </a>
+        </Link>
 
         <button
           className="navbar-toggler navbar-toggler-right"
