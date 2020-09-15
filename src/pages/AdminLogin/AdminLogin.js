@@ -106,7 +106,6 @@ const AdminLogin = () => {
                               errors.userName && touched.userName && "error"
                             }
                             className="form-control"
-                            type="text"
                           />
                           {errors.userName && touched.userName && (
                             <div className="input-feedback">

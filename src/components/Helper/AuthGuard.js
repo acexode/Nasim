@@ -10,7 +10,7 @@ const AuthGuard = ({ component: Component, ...rest }) => (
       ) : (
         <Redirect
           to={{
-            pathname: "/adminlogin",
+            pathname: "/login",
             state: { from: props.location },
           }}
         />
