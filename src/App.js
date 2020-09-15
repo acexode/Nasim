@@ -16,7 +16,7 @@ import {
 import BackendHome from "./pages/Home/Backend/BackendHome/BackendHome";
 import BeneficiariesTable from "./pages/Home/Backend/BackendHome/DataTables/Beneficiaries";
 import BeneficiaryLists from "./pages/Home/Backend/Supervisor/BeneficiaryLists";
-import Footer from "./components/Footer/Footer";
+import Footer from './components/footer/footer';
 
 import Overview from "./pages/Home/Backend/Supervisor/Overview";
 
@@ -28,23 +28,26 @@ const Main = withRouter(({ location }) => {
       {location.pathname !== "/adminlogin" &&
         location.pathname !== "/overview" && (
           <>
-            <Nav />
-            <Route path="/" exact component={Home} />
-            <Route path="/login" exact component={Login} />
+            <div className="mb-5">
+              <Nav />
+              <Route path="/" exact component={Home} />
+              <Route path="/login" exact component={Login} />
 
-            <SchemeProvider>
-              <AuthGuard path="/dashboard" exact component={BackendHome} />
+              <SchemeProvider>
+                <AuthGuard path="/dashboard" exact component={BackendHome} />
+                <AuthGuard
+                  path="/beneficiaries/:id"
+                  exact
+                  component={BeneficiariesTable}
+                />
+              </SchemeProvider>
               <AuthGuard
-                path="/beneficiaries/:id"
+                path="/beneficiary-lists"
                 exact
-                component={BeneficiariesTable}
+                component={BeneficiaryLists}
               />
-            </SchemeProvider>
-            <AuthGuard
-              path="/beneficiary-lists"
-              exact
-              component={BeneficiaryLists}
-            />
+
+            </div>
             <Footer />
           </>
         )}
@@ -57,7 +60,7 @@ const Main = withRouter(({ location }) => {
 });
 function App() {
   return (
-    <div>
+    <div id="page-container">
       <BrowserRouter>
         <Main />
       </BrowserRouter>

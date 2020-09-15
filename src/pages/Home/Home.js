@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Nav from "../../components/Nav/Nav";
-import Footer from "../../components/footer/Footer";
+import Footer from "../../components/footer/footer";
 import HeroItem from "./HeroItem";
 import aboutImage from "../../assets/about-img.png";
 import "./home.scss";
