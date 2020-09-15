@@ -6,7 +6,13 @@ import AdminLogin from "./pages/AdminLogin/AdminLogin";
 import Nav from "./components/Nav/Nav";
 import AuthGuard from "./components/Helper/AuthGuard";
 
-import { withRouter, Switch, BrowserRouter, Route,Redirect } from "react-router-dom";
+import {
+  withRouter,
+  Switch,
+  BrowserRouter,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import BackendHome from "./pages/Home/Backend/BackendHome/BackendHome";
 import BeneficiariesTable from "./pages/Home/Backend/BackendHome/DataTables/Beneficiaries";
 import BeneficiaryLists from "./pages/Home/Backend/Supervisor/BeneficiaryLists";
@@ -20,7 +26,7 @@ import { SchemeProvider } from "./components/ContextAPI/SchemesAPI";
 const Main = withRouter(({ location }) => {
   return (
     <>
-      {location.pathname !== "/adminlogin" && location.pathname !=="/*" && (
+      {location.pathname !== "/adminlogin" && (
         <>
           <Nav />
           <Footer />
@@ -30,7 +36,6 @@ const Main = withRouter(({ location }) => {
         <Route path="/" exact component={Home} />
         <Route path="/adminlogin" exact component={AdminLogin} />
         <Route path="/login" exact component={Login} />
-          <Route path="/*"  component={Notfound} />
         <SchemeProvider>
           <AuthGuard path="/dashboard" exact component={BackendHome} />
           <AuthGuard
@@ -45,6 +50,7 @@ const Main = withRouter(({ location }) => {
           component={BeneficiaryLists}
         />
         <AuthGuard path="/overview" exact component={Overview} />
+        <Route path="/*" exact component={Notfound} />
       </Switch>
     </>
   );
