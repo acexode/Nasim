@@ -3,13 +3,14 @@ import logo from "../../assets/Group.svg";
 import "./nav.scss";
 import { useHistory, Link } from "react-router-dom";
 
-const BackendNav = () => {
+const SNav = () => {
   let history = useHistory();
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    history.push("/adminlogin");
+    history.push("/login");
   };
+
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light fixed-top py-3 navbar-scrolled mb-5"
@@ -66,12 +67,12 @@ const BackendNav = () => {
                   transform: "translate3d(-11px, 50px, 0px)",
                 }}
               >
-                <a className="dropdown-item" href="profile.html">
+                <a className="dropdown-item" href="/overview">
                   My Profile
                 </a>
-                <a className="dropdown-item" href="settings.html">
+                {/* <a className="dropdown-item" href="settings.html">
                   Settings
-                </a>
+                </a> */}
                 <a>
                   <Link className="dropdown-item" onClick={logout}>
                     Logout
@@ -86,4 +87,4 @@ const BackendNav = () => {
   );
 };
 
-export default BackendNav;
+export default SNav;

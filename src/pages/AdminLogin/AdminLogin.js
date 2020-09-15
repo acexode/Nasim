@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import logo from "../../assets/Group.svg";
 import "./AdminLogin.scss";
 import axios from "axios";
@@ -8,27 +8,43 @@ import { useHistory } from "react-router-dom";
 
 const AdminLogin = () => {
   let history = useHistory();
+  const [err, setErr] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   return (
     <Formik
-      initialValues={{ email: "", password: "" }}
+      initialValues={{ userName: "", userPassword: "" }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           console.log("Logging in", values);
-          axios.post(``, values).then((res) => {
-            console.log(res);
-            //   console.log(res.data);
-            //   let user = {username: res.data.user.username, id: res.data.user._id}
-            //   localStorage.setItem("token", res.data.token)
-            //   localStorage.setItem('user', JSON.stringify(user))
-            //     history.push('/chat',{user: res.data.user})
-          });
+          setLoading(true);
+          axios
+            .post(
+              `https://sleepy-wildwood-51098.herokuapp.com/schemes/login`,
+              values
+            )
+            .then((res) => {
+              console.log(res);
+              console.log(res.data);
+              let { message, full_name } = res.data.user;
+              console.log(message, full_name);
+              localStorage.setItem("token", message);
+              localStorage.setItem("user", full_name);
+
+              setLoading(false);
+              history.push("/dashboard");
+            })
+            .catch((err) => {
+              console.log(err);
+              setErr(true);
+              setLoading(false);
+            });
           setSubmitting(false);
         }, 500);
       }}
       validationSchema={Yup.object().shape({
-        email: Yup.string().required("Required").email(),
-        password: Yup.string()
+        userName: Yup.string().required("Required").email(),
+        userPassword: Yup.string()
           .required("No password provided.")
           .min(8, "Password is too short - should be 8 chars minimum.")
           .matches(/(?=.*[0-9])/, "Password must contain a number."),
@@ -54,7 +70,24 @@ const AdminLogin = () => {
                       <img src={logo} alt="Nassims" />
                     </a>
                   </div>
-
+                  {err ? (
+                    <div
+                      class="alert alert-danger alert-dismissible fade show"
+                      role="alert"
+                    >
+                      <strong>ERROR!</strong> Email or Password is wrong.
+                      <button
+                        type="button"
+                        class="close"
+                        data-dismiss="alert"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
                   <div className="account-box">
                     <div className="account-wrapper">
                       <h3 className="account-title">Login</h3>
@@ -63,18 +96,21 @@ const AdminLogin = () => {
                         <div className="form-group">
                           <label className="email">Email </label>
                           <input
-                            name="email"
+                            name="userName"
                             type="text"
                             placeholder="emekaokafor@gmail.com"
-                            value={values.email}
+                            value={values.userName}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            className={errors.email && touched.email && "error"}
+                            className={
+                              errors.userName && touched.userName && "error"
+                            }
                             className="form-control"
-                            type="text"
                           />
-                          {errors.email && touched.email && (
-                            <div className="input-feedback">{errors.email}</div>
+                          {errors.userName && touched.userName && (
+                            <div className="input-feedback">
+                              {errors.userName}
+                            </div>
                           )}
                         </div>
                         <div className="form-group">
@@ -89,32 +125,43 @@ const AdminLogin = () => {
                             </div>
                           </div>
                           <input
-                            name="password"
+                            name="userPassword"
                             type="password"
                             placeholder="Enter your password"
-                            value={values.password}
+                            value={values.userPassword}
                             onChange={handleChange}
                             onBlur={handleBlur}
                             className={
-                              errors.password && touched.password && "error"
+                              errors.userPassword &&
+                              touched.userPassword &&
+                              "error"
                             }
                             className="form-control"
-                            type="password"
                           />
-                          {errors.password && touched.password && (
+                          {errors.userPassword && touched.userPassword && (
                             <div className="input-feedback">
-                              {errors.password}
+                              {errors.userPassword}
                             </div>
                           )}
                         </div>
                         <div className="form-group text-center">
-                          <button
-                            className="btn account-btn"
-                            disabled={isSubmitting}
-                            type="submit"
-                          >
-                            Login
-                          </button>
+                          {loading ? (
+                            <button
+                              className="btn account-btnLoading"
+                              disabled
+                              type="submit"
+                            >
+                              Loading...
+                            </button>
+                          ) : (
+                            <button
+                              className="btn account-btn"
+                              disabled={isSubmitting}
+                              type="submit"
+                            >
+                              Login
+                            </button>
+                          )}
                         </div>
                       </form>
                     </div>

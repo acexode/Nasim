@@ -4,8 +4,15 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import AdminLogin from "./pages/AdminLogin/AdminLogin";
 import Nav from "./components/Nav/Nav";
+import AuthGuard from "./components/Helper/AuthGuard";
 
-import { withRouter, Switch, BrowserRouter, Route } from "react-router-dom";
+import {
+  withRouter,
+  Switch,
+  BrowserRouter,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import BackendHome from "./pages/Home/Backend/BackendHome/BackendHome";
 import BeneficiariesTable from "./pages/Home/Backend/BackendHome/DataTables/Beneficiaries";
 import BeneficiaryLists from "./pages/Home/Backend/Supervisor/BeneficiaryLists";
@@ -18,26 +25,32 @@ import { SchemeProvider } from "./components/ContextAPI/SchemesAPI";
 const Main = withRouter(({ location }) => {
   return (
     <>
-      {location.pathname != "/adminlogin" && (
-        <>
-          <Nav />
-          <Footer />
-        </>
-      )}
+      {location.pathname !== "/adminlogin" &&
+        location.pathname !== "/overview" && (
+          <>
+            <Nav />
+            <Route path="/" exact component={Home} />
+            <Route path="/login" exact component={Login} />
+
+            <SchemeProvider>
+              <AuthGuard path="/dashboard" exact component={BackendHome} />
+              <AuthGuard
+                path="/beneficiaries/:id"
+                exact
+                component={BeneficiariesTable}
+              />
+            </SchemeProvider>
+            <AuthGuard
+              path="/beneficiary-lists"
+              exact
+              component={BeneficiaryLists}
+            />
+            <Footer />
+          </>
+        )}
       <Switch>
-        <Route path="/" exact component={Home} />
-        <SchemeProvider>
-          <Route path="/dashboard" exact component={BackendHome} />
-          <Route
-            path="/beneficiaries/:id"
-            exact
-            component={BeneficiariesTable}
-          />
-        </SchemeProvider>
-        <Route path="/beneficiary-lists" exact component={BeneficiaryLists} />
-        <Route path="/login" exact component={Login} />
         <Route path="/adminlogin" exact component={AdminLogin} />
-        <Route path="/overview" exact component={Overview} />
+        <AuthGuard path="/overview" exact component={Overview} />
       </Switch>
     </>
   );
